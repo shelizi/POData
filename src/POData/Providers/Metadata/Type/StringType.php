@@ -3,10 +3,10 @@
 namespace POData\Providers\Metadata\Type;
 
 /**
- * Class String
+ * Class StringType
  * @package POData\Providers\Metadata\Type
  */
-class String implements IType
+class StringType implements IType
 {
     /**
      * Gets the type code

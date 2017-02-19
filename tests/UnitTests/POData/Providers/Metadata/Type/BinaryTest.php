@@ -19,9 +19,9 @@ use POData\Providers\Metadata\Type\Navigation;
 use POData\Providers\Metadata\Type\Null1;
 use POData\Providers\Metadata\Type\SByte;
 use POData\Providers\Metadata\Type\Single;
-use POData\Providers\Metadata\Type\String;
+use POData\Providers\Metadata\Type\StringType;
 use POData\Providers\Metadata\Type\TypeCode;
-use POData\Providers\Metadata\Type\Void;
+use POData\Providers\Metadata\Type\VoidType;
 
 class BinaryTest extends \PHPUnit_Framework_TestCase {
 
@@ -86,8 +86,8 @@ class BinaryTest extends \PHPUnit_Framework_TestCase {
 		$this->assertFalse( $type->isCompatibleWith(new Null1()) );
 		$this->assertFalse( $type->isCompatibleWith(new SByte()) );
 		$this->assertFalse( $type->isCompatibleWith(new Single()) );
-		$this->assertFalse( $type->isCompatibleWith(new String()) );
-		$this->assertFalse( $type->isCompatibleWith(new Void()) );
+		$this->assertFalse( $type->isCompatibleWith(new StringType()) );
+		$this->assertFalse( $type->isCompatibleWith(new VoidType()) );
 
 
 
