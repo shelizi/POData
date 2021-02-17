@@ -1,3 +1,6 @@
+# DEPRECATED!  
+# Use https://github.com/Algo-Web/POData instead**
+
 Master Status: [![Build Status](https://travis-ci.org/Qeti/POData.png?branch=master)](https://travis-ci.org/Qeti/POData) 
 [![Coverage Status](https://img.shields.io/coveralls/Qeti/POData.svg)](https://coveralls.io/r/Qeti/POData?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Qeti/POData/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Qeti/POData/?branch=master)
