@@ -37,6 +37,13 @@ class AnonymousFunction
      * @var string
      */
     private $_reference = null;
+    
+    /**
+     * Static array to store generated closures
+     * 
+     * @var array
+     */
+    private static $_closures = array();
 
     /**
      * Create new instance of AnonymousFunction
@@ -102,18 +109,39 @@ class AnonymousFunction
     /**
      * Gets reference to the anonymous function.
      * 
-     * @return callable
+     * @return string
      */
     public function getReference()
     {
         if (is_null($this->_reference)) {
-            // 使用 Closure::fromCallable 替代 create_function
+            // 使用唯一ID作為函數名稱
+            $this->_reference = 'lambda_' . uniqid();
+            // 創建匯名函數對象
             $closureCode = "return function({$this->_parametersAsString}) {
                 {$this->_code}
             };"; 
-            $this->_reference = eval($closureCode);
+            self::$_closures[$this->_reference] = eval($closureCode);
         }
 
-        return $this->_reference;
+        return chr(0) . $this->_reference;
+    }
+    
+    /**
+     * Call the anonymous function with the given parameters
+     * 
+     * @param string $functionName Function reference name
+     * @param array $params Parameters to pass to the function
+     * 
+     * @return mixed Result of the function call
+     */
+    public static function callFunction($functionName, $params)
+    {
+        // 移除開頭的 chr(0)
+        $name = substr($functionName, 1);
+        if (isset(self::$_closures[$name])) {
+            return call_user_func_array(self::$_closures[$name], $params);
+        }
+        
+        return null;
     }
 }

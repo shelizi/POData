@@ -396,8 +396,8 @@ class OrderByParser
         } else {
             $code = null;
             for ($i = 0; $i < $comparisonFunctionCount; $i++) {
-                $subComparisonFunctionName = substr($this->_comparisonFunctions[$i]->getReference(), 1);
-                $code .= "\$result = call_user_func_array(chr(0) . '$subComparisonFunctionName', array($parameters[0], $parameters[1]));";
+                $subComparisonFunctionName = $this->_comparisonFunctions[$i]->getReference();
+                $code .= "\$result = \\POData\\UriProcessor\\QueryProcessor\\AnonymousFunction::callFunction('$subComparisonFunctionName', array($parameters[0], $parameters[1]));";
                 $code .= "
                          if (\$result != 0) {
                             return \$result;
