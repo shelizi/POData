@@ -489,8 +489,10 @@ class PHPExpressionProviderTest extends \PHPUnit_Framework_TestCase
         //emit the PHP expression corresponds to Astoria filter query
         $expressionProcessor = new ExpressionProcessor(new \POData\Providers\Expression\PHPExpressionProvider('$lt'));
         $phpExpression = $expressionProcessor->processExpression($expressionTree);
-        //create an anonymous function with the generated PHP expression in if condition
-        $fun = create_function('$lt', 'if(' . $phpExpression . ') { return true; } else { return false;}');
+        //使用匿名函數替代 create_function
+        $fun = function($lt) use ($phpExpression) {
+            return eval('return (' . $phpExpression . ') ? true : false;');
+        };
         $result = array();
         foreach($entries as $lt) {
             //Filter out only the entries which satisfies the condition

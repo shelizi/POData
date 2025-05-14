@@ -100,16 +100,18 @@ class AnonymousFunction
     }
 
     /**
-     * Gets refernece to the anonymous function.
+     * Gets reference to the anonymous function.
      * 
-     * @return string
+     * @return callable
      */
     public function getReference()
     {
         if (is_null($this->_reference)) {
-            $this->_reference = create_function(
-                $this->_parametersAsString, $this->_code
-            );
+            // 使用 Closure::fromCallable 替代 create_function
+            $closureCode = "return function({$this->_parametersAsString}) {
+                {$this->_code}
+            };"; 
+            $this->_reference = eval($closureCode);
         }
 
         return $this->_reference;
