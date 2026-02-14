@@ -595,12 +595,12 @@ class OrderByParserTest extends \PHPUnit_Framework_TestCase
         /**
             //Function Name: lambda_3
 
-			$result = call_user_func_array(chr(0) . 'lambda_1', array($Order_DetailsA, $Order_DetailsB));
+			$result = \POData\UriProcessor\QueryProcessor\AnonymousFunction::callFunction(chr(0) . 'lambda_1', array($Order_DetailsA, $Order_DetailsB));
 			if ($result != 0) {
                 return $result;
 			}
 
-			$result = call_user_func_array(chr(0) . 'lambda_2', array($Order_DetailsA, $Order_DetailsB));
+			$result = \POData\UriProcessor\QueryProcessor\AnonymousFunction::callFunction(chr(0) . 'lambda_2', array($Order_DetailsA, $Order_DetailsB));
 			if ($result != 0) {
                 return $result;
 			}
